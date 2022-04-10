@@ -1,6 +1,7 @@
 import React from 'react';
-import { Table, Button, Form } from 'react-bootstrap';
+import { Table, Button } from 'react-bootstrap';
 import CadastrarModal from '../shared/modal/cadastrarModal';
+import AtualizarModal from '../shared/modal/atualizarModal';
 
 class Categoria extends React.Component {
     constructor(props) {
@@ -12,6 +13,7 @@ class Categoria extends React.Component {
             nome: '',
             descricao: '',
             modalShow: false,
+            modalShowAtualizar: false,
             setModalShow: false,
         };
     }
@@ -84,36 +86,6 @@ class Categoria extends React.Component {
         });
     };
 
-    atualizaNome = (e) => {
-        this.setState({
-            nome: e.target.value,
-        });
-    };
-    atualizaDescricao = (e) => {
-        this.setState({
-            descricao: e.target.value,
-        });
-    };
-
-    submitCategoria = () => {
-        if (this.state.codigo === 0) {
-            const categoria = {
-                nome: this.state.nome,
-                descricao: this.state.descricao,
-            };
-
-            this.cadastraCategoria(categoria);
-        } else {
-            const categoria = {
-                codigo: this.state.codigo,
-                nome: this.state.nome,
-                descricao: this.state.descricao,
-            };
-            this.atualizaCategoria(categoria);
-        }
-        this.limparDados();
-    };
-
     limparDados = () => {
         this.setState({ codigo: 0, nome: '', descricao: '' });
     };
@@ -122,87 +94,58 @@ class Categoria extends React.Component {
         this.setState({ modalShow: true });
     };
 
+    abrirModalAtualizar = (codigo) => {
+        this.buscarDadosPorCodigo(codigo);
+
+        this.setState({ modalShowAtualizar: true });
+    };
+
+    cadastrarDados = (nomeProps, descricaoProps) => {
+        const categoria = {
+            nome: nomeProps,
+            descricao: descricaoProps,
+        };
+
+        this.cadastraCategoria(categoria);
+        this.limparDados();
+    };
+
+    atualizarDados = (codigoModal, nomeProps, descricaoProps) => {
+        const categoria = {
+            codigo: codigoModal,
+            nome: nomeProps,
+            descricao: descricaoProps,
+        };
+
+        this.atualizaCategoria(categoria);
+        this.limparDados();
+    };
+
     render() {
         return (
             <div>
-                <h3>Cadastrar</h3>
-                <Form>
-                    <Form.Group className="mb-3" controlId="nome">
-                        <Form.Label>Nome</Form.Label>
-                        <Form.Control
-                            type="text"
-                            placeholder="Digite o nome"
-                            onChange={this.atualizaNome}
-                        />
-                    </Form.Group>
-                    <Form.Group className="mb-3" controlId="descricao">
-                        <Form.Label>Descrição</Form.Label>
-                        <Form.Control
-                            type="text"
-                            placeholder="Digite a descrição"
-                            onChange={this.atualizaDescricao}
-                        />
-                    </Form.Group>
-
-                    <Button
-                        variant="primary"
-                        type="submit"
-                        onClick={this.submitCategoria}
-                    >
-                        Salvar
-                    </Button>
-                </Form>
-
-                <hr />
-
-                <Button variant="primary" onClick={this.abrirModal}>
-                    Launch vertically centered modal
+                <Button
+                    variant="primary"
+                    onClick={this.abrirModal}
+                    style={{ marginTop: '1rem', marginBottom: '1rem' }}
+                >
+                    Cadastrar Categoria
                 </Button>
 
                 <CadastrarModal
                     show={this.state.modalShow}
                     onHide={() => this.setState({ modalShow: false })}
+                    salvar={this.cadastrarDados}
                 />
 
-                <hr />
-
-                <h3>Atualizar</h3>
-                <Form>
-                    <Form.Group className="mb-3" controlId="codigo">
-                        <Form.Label>Código</Form.Label>
-                        <Form.Control
-                            type="text"
-                            value={this.state.codigo}
-                            readOnly={true}
-                        />
-                    </Form.Group>
-                    <Form.Group className="mb-3" controlId="nome">
-                        <Form.Label>Nome</Form.Label>
-                        <Form.Control
-                            type="text"
-                            placeholder="Digite o nome"
-                            value={this.state.nome}
-                            onChange={this.atualizaNome}
-                        />
-                    </Form.Group>
-                    <Form.Group className="mb-3" controlId="descricao">
-                        <Form.Label>Descrição</Form.Label>
-                        <Form.Control
-                            type="text"
-                            placeholder="Digite a descrição"
-                            value={this.state.descricao}
-                            onChange={this.atualizaDescricao}
-                        />
-                    </Form.Group>
-
-                    <Button
-                        variant="primary"
-                        type="submit"
-                        onClick={this.submitCategoria}
-                    >
-                        Atualizar
-                    </Button>
-                </Form>
+                <AtualizarModal
+                    show={this.state.modalShowAtualizar}
+                    onHide={() => this.setState({ modalShowAtualizar: false })}
+                    salvar={this.atualizarDados}
+                    dadosCodigo={this.state.codigo}
+                    dadosNome={this.state.nome}
+                    dadosDescricao={this.state.descricao}
+                />
 
                 <Table striped bordered hover>
                     <thead>
@@ -226,13 +169,14 @@ class Categoria extends React.Component {
                                             style={{ marginRight: '1rem' }}
                                             variant="primary"
                                             onClick={() =>
-                                                this.buscarDadosPorCodigo(
+                                                this.abrirModalAtualizar(
                                                     categoria.codigo
                                                 )
                                             }
                                         >
                                             Atualizar
                                         </Button>
+
                                         <Button
                                             variant="danger"
                                             onClick={() =>

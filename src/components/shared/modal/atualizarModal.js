@@ -1,9 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 
-function CadastrarModal(props) {
-    const [nome, setNome] = useState('');
-    const [descricao, setDescricao] = useState('');
+function AtualizarModal(props) {
+    const [codigo, setCodigo] = useState(props.dadosCodigo);
+    const [nome, setNome] = useState(props.dadosNome);
+    const [descricao, setDescricao] = useState(props.dadosDescricao);
+
+    useEffect(() => {
+        if (props.dadosCodigo) {
+            setCodigo(props.dadosCodigo);
+        }
+        if (props.dadosNome) {
+            setNome(props.dadosNome);
+        }
+        if (props.dadosDescricao) {
+            setDescricao(props.dadosDescricao);
+        }
+    }, [props.dadosCodigo, props.dadosNome, props.dadosDescricao]);
 
     const atualizaNome = (e) => {
         setNome(e.target.value);
@@ -22,17 +35,26 @@ function CadastrarModal(props) {
         >
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
-                    Cadastrar
+                    Atualizar
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <Form>
+                    <Form.Group className="mb-3" controlId="codigo">
+                        <Form.Label>Código</Form.Label>
+                        <Form.Control
+                            type="text"
+                            readOnly={true}
+                            value={codigo}
+                        />
+                    </Form.Group>
                     <Form.Group className="mb-3" controlId="nome">
                         <Form.Label>Nome</Form.Label>
                         <Form.Control
                             type="text"
                             placeholder="Digite o nome"
                             onChange={(e) => atualizaNome(e)}
+                            value={nome}
                         />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="descricao">
@@ -41,15 +63,16 @@ function CadastrarModal(props) {
                             type="text"
                             placeholder="Digite a descrição"
                             onChange={(e) => atualizaDescricao(e)}
+                            value={descricao}
                         />
                     </Form.Group>
                     <Button
                         variant="primary"
                         type="submit"
                         style={{ marginRight: '1rem' }}
-                        onClick={() => props.salvar(nome, descricao)}
+                        onClick={() => props.salvar(codigo, nome, descricao)}
                     >
-                        Salvar
+                        Atualizar
                     </Button>
                     <Button variant="danger" onClick={props.onHide}>
                         Fechar
@@ -60,4 +83,4 @@ function CadastrarModal(props) {
     );
 }
 
-export default CadastrarModal;
+export default AtualizarModal;
