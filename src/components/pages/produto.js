@@ -1,8 +1,9 @@
 import React from 'react';
 
-import { Table, Button, Form } from 'react-bootstrap';
+import { Table, Button } from 'react-bootstrap';
 
 import CadastrarModal from '../shared/modal/produto/cadastrarModal';
+import AtualizarModal from '../shared/modal/produto/atualizarModal';
 class Produto extends React.Component {
     constructor(props) {
         super(props);
@@ -17,6 +18,7 @@ class Produto extends React.Component {
             categoria: { codigo: 0 },
             modalShow: false,
             setModalShow: false,
+            modalShowAtualizar: false,
         };
     }
 
@@ -54,6 +56,22 @@ class Produto extends React.Component {
         );
     };
 
+    buscarDadosPorCodigo = (codigo) => {
+        fetch('http://localhost:8080/api/produto/' + codigo, {
+            method: 'GET',
+        }).then((resposta) =>
+            resposta.json().then((dado) => {
+                this.setState({
+                    codigo: dado.codigo,
+                    nome: dado.nome,
+                    quantidade: dado.quantidade,
+                    valor: dado.valor,
+                    categoria: { codigo: dado.categoria.codigo },
+                });
+            })
+        );
+    };
+
     deletarProduto = (produto) => {
         fetch('http://localhost:8080/api/produto', {
             method: 'DELETE',
@@ -82,6 +100,20 @@ class Produto extends React.Component {
         });
 
         alert(JSON.stringify(produto));
+    };
+
+    atualizaProduto = (categoria) => {
+        fetch('http://localhost:8080/api/produto', {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(categoria),
+        }).then((resposta) => {
+            if (resposta.ok) {
+                this.buscarDados();
+            } else {
+                alert('Erro ao atualizar');
+            }
+        });
     };
 
     atualizaNome = (e) => {
@@ -113,6 +145,12 @@ class Produto extends React.Component {
         this.setState({ modalShow: true });
     };
 
+    abrirModalAtualizar = (codigo) => {
+        this.buscarDadosPorCodigo(codigo);
+
+        this.setState({ modalShowAtualizar: true });
+    };
+
     cadastrarDados = (
         nomeProps,
         quantidadeProps,
@@ -127,7 +165,36 @@ class Produto extends React.Component {
         };
 
         this.cadastraProduto(produto);
-        alert(JSON.stringify(produto));
+        this.limparDados();
+    };
+
+    atualizarDados = (
+        codigoProps,
+        nomeProps,
+        quantidadeProps,
+        valorProps,
+        categoriaSelecionadaProps
+    ) => {
+        const produto = {
+            codigo: codigoProps,
+            nome: nomeProps,
+            quantidade: quantidadeProps,
+            valor: valorProps,
+            categoria: { codigo: categoriaSelecionadaProps },
+        };
+
+        this.atualizaProduto(produto);
+        this.limparDados();
+    };
+
+    limparDados = () => {
+        this.setState({
+            codigo: 0,
+            nome: '',
+            quantidade: 0,
+            valor: 0,
+            categoria: { codigo: 0 },
+        });
     };
 
     render() {
@@ -138,6 +205,18 @@ class Produto extends React.Component {
                     dadosCategorias={this.state.categorias}
                     salvar={this.cadastrarDados}
                     onHide={() => this.setState({ modalShow: false })}
+                />
+
+                <AtualizarModal
+                    show={this.state.modalShowAtualizar}
+                    onHide={() => this.setState({ modalShowAtualizar: false })}
+                    salvar={this.atualizarDados}
+                    dadosCodigo={this.state.codigo}
+                    dadosNome={this.state.nome}
+                    dadosQuantidade={this.state.quantidade}
+                    dadosValor={this.state.valor}
+                    dadosCategoria={this.state.categoria.codigo}
+                    dadosCategorias={this.state.categorias}
                 />
 
                 <Button
