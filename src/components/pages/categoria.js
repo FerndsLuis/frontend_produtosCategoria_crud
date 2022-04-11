@@ -110,9 +110,9 @@ class Categoria extends React.Component {
         this.limparDados();
     };
 
-    atualizarDados = (codigoModal, nomeProps, descricaoProps) => {
+    atualizarDados = (codigoProps, nomeProps, descricaoProps) => {
         const categoria = {
-            codigo: codigoModal,
+            codigo: codigoProps,
             nome: nomeProps,
             descricao: descricaoProps,
         };
