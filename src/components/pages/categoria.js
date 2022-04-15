@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table, Button } from 'react-bootstrap';
-import CadastrarModal from '../shared/modal/cadastrarModal';
-import AtualizarModal from '../shared/modal/atualizarModal';
+import CadastrarModal from '../shared/modal/categoria/cadastrarModal';
+import AtualizarModal from '../shared/modal/categoria/atualizarModal';
 
 class Categoria extends React.Component {
     constructor(props) {
@@ -191,7 +191,9 @@ class Categoria extends React.Component {
                         ) : (
                             <tr>
                                 <td className="text-center" colSpan={4}>
-                                    carregando...
+                                    {this.state.categorias.length === 0
+                                        ? 'Nenhuma categoria cadastrada'
+                                        : 'carregando...'}
                                 </td>
                             </tr>
                         )}

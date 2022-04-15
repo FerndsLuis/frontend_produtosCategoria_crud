@@ -10,24 +10,27 @@ function AtualizarModal(props) {
     const [categoriaSelecionada, setCategoriaSelecionada] = useState('');
 
     useEffect(() => {
-        if (props.dadosCodigo) {
-            setCodigo(props.dadosCodigo);
-        }
-        if (props.dadosNome) {
-            setNome(props.dadosNome);
-        }
-        if (props.dadosQuantidade) {
-            setQuantidade(props.dadosQuantidade);
-        }
-        if (props.dadosValor) {
-            setValor(props.dadosValor);
-        }
-        if (props.dadosCategorias) {
-            setCategorias(props.dadosCategorias);
-        }
-        if (props.dadosCategoria) {
-            setCategoriaSelecionada(props.dadosCategoria);
-        }
+        const id = setInterval(() => {
+            if (props.dadosCodigo) {
+                setCodigo(props.dadosCodigo);
+            }
+            if (props.dadosNome) {
+                setNome(props.dadosNome);
+            }
+            if (props.dadosQuantidade) {
+                setQuantidade(props.dadosQuantidade);
+            }
+            if (props.dadosValor) {
+                setValor(props.dadosValor);
+            }
+            if (props.dadosCategorias) {
+                setCategorias(props.dadosCategorias);
+            }
+            if (props.dadosCategoria) {
+                setCategoriaSelecionada(props.dadosCategoria);
+            }
+        }, 1000);
+        return () => clearInterval(id);
     }, [
         props.dadosCodigo,
         props.dadosNome,
@@ -52,7 +55,8 @@ function AtualizarModal(props) {
 
     return (
         <Modal
-            {...props}
+            show={props.show}
+            onHide={props.onHide}
             size="lg"
             aria-labelledby="contained-modal-title-vcenter"
             centered

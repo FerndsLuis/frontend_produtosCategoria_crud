@@ -281,7 +281,9 @@ class Produto extends React.Component {
                         ) : (
                             <tr>
                                 <td className="text-center" colSpan={6}>
-                                    carregando...
+                                    {this.state.produtos.length === 0
+                                        ? 'Nenhum produto cadastrado'
+                                        : 'carregando...'}
                                 </td>
                             </tr>
                         )}
