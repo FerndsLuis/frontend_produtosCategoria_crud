@@ -10,6 +10,8 @@ Objetivo do projeto:
 -   Projeto em REACT
 -   Consumo das API com fetch, sem usar promise.
 
+---
+
 <figure>
  <figcaption align="center">Tela inicial</figcaption>
 <p align="center">
