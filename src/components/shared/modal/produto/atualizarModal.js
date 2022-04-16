@@ -10,27 +10,24 @@ function AtualizarModal(props) {
     const [categoriaSelecionada, setCategoriaSelecionada] = useState('');
 
     useEffect(() => {
-        const id = setInterval(() => {
-            if (props.dadosCodigo) {
-                setCodigo(props.dadosCodigo);
-            }
-            if (props.dadosNome) {
-                setNome(props.dadosNome);
-            }
-            if (props.dadosQuantidade) {
-                setQuantidade(props.dadosQuantidade);
-            }
-            if (props.dadosValor) {
-                setValor(props.dadosValor);
-            }
-            if (props.dadosCategorias) {
-                setCategorias(props.dadosCategorias);
-            }
-            if (props.dadosCategoria) {
-                setCategoriaSelecionada(props.dadosCategoria);
-            }
-        }, 1000);
-        return () => clearInterval(id);
+        if (props.dadosCodigo) {
+            setCodigo(props.dadosCodigo);
+        }
+        if (props.dadosNome) {
+            setNome(props.dadosNome);
+        }
+        if (props.dadosQuantidade) {
+            setQuantidade(props.dadosQuantidade);
+        }
+        if (props.dadosValor) {
+            setValor(props.dadosValor);
+        }
+        if (props.dadosCategorias) {
+            setCategorias(props.dadosCategorias);
+        }
+        if (props.dadosCategoria) {
+            setCategoriaSelecionada(props.dadosCategoria);
+        }
     }, [
         props.dadosCodigo,
         props.dadosNome,

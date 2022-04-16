@@ -11,7 +11,7 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
 function App() {
     return (
-        <main className="App">
+        <main className="App container">
             <h1>Consumo Api</h1>
             <BrowserRouter>
                 <Nav variant="tabs" defaultActiveKey="/">
