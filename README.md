@@ -1,7 +1,7 @@
 # <center>API com Spring Boot </center>
 
 <p align="center">
-  <img src="README/react-1.png" width="350" />
+  <img src="README/react-1.png" width="250" />
 </p>
 
 Objetivo do projeto:
@@ -10,26 +10,32 @@ Objetivo do projeto:
 -   Projeto em REACT
 -   Consumo das API com fetch, sem usar promise.
 
-<figure align="center">
+<p align="center">
+<figure>
  <figcaption>Tela inicial</figcaption>
   <img
   src="README/home.png"
   alt="Tela inicial" width="400" > 
 </figure>
+</p>
 
+<p align="center">
 <figure align="center">
 <figcaption>Tela produto</figcaption>
   <img
   src="README/produtos.png"
   alt="Tela produto" width="400">  
 </figure>
+</p>
 
+<p align="center">
 <figure align="center">
  <figcaption>Tela categoria</figcaption>
   <img
   src="README/categoria.png"
   alt="Tela categoria" width="400"> 
 </figure>
+</p>
 
 ## Back End:
 
