@@ -11,7 +11,7 @@ Objetivo do projeto:
 -   Consumo das API com fetch, sem usar promise.
 
 <figure>
- <figcaption>Tela inicial</figcaption>
+ <figcaption align="center">Tela inicial</figcaption>
 <p align="center">
   <img
   src="README/home.png"
@@ -19,23 +19,23 @@ Objetivo do projeto:
 </p>
 </figure>
 
+<figure>
+<figcaption align="center">Tela produto</figcaption>
 <p align="center">
-<figure align="center">
-<figcaption>Tela produto</figcaption>
   <img
   src="README/produtos.png"
   alt="Tela produto" width="400">  
-</figure>
 </p>
+</figure>
 
+<figure>
 <p align="center">
-<figure align="center">
- <figcaption>Tela categoria</figcaption>
+ <figcaption align="center">Tela categoria</figcaption>
   <img
   src="README/categoria.png"
   alt="Tela categoria" width="400"> 
-</figure>
 </p>
+</figure>
 
 ## Back End:
 
