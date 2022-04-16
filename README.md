@@ -1,7 +1,7 @@
 # <center>API com Spring Boot </center>
 
 <p align="center">
-  <img src="README/react.png" width="350" />
+  <img src="README/react-1.png" width="350" />
 </p>
 
 Objetivo do projeto:
@@ -9,27 +9,26 @@ Objetivo do projeto:
 -   Desenvolver o Front End em REACT para consumir e manipular os dados vindo de uma API
 -   Projeto em REACT
 -   Consumo das API com fetch, sem usar promise.
--
 
 <figure align="center">
+ <figcaption>Tela inicial</figcaption>
   <img
   src="README/home.png"
-  alt="Tela inicial">
-  <figcaption>Tela inicial</figcaption>
+  alt="Tela inicial" width="400" > 
 </figure>
 
 <figure align="center">
+<figcaption>Tela produto</figcaption>
   <img
   src="README/produtos.png"
-  alt="Tela produto">
-  <figcaption>Tela produto</figcaption>
+  alt="Tela produto" width="400">  
 </figure>
 
 <figure align="center">
+ <figcaption>Tela categoria</figcaption>
   <img
   src="README/categoria.png"
-  alt="Tela categoria">
-  <figcaption>Tela categoria</figcaption>
+  alt="Tela categoria" width="400"> 
 </figure>
 
 ## Back End:
