@@ -15,7 +15,7 @@ Objetivo do projeto:
 <p align="center">
   <img
   src="README/home.png"
-  alt="Tela inicial" width="400" > 
+  alt="Tela inicial" width="550" > 
 </p>
 </figure>
 
@@ -24,16 +24,16 @@ Objetivo do projeto:
 <p align="center">
   <img
   src="README/produtos.png"
-  alt="Tela produto" width="400">  
+  alt="Tela produto" width="550">  
 </p>
 </figure>
 
 <figure>
+<figcaption align="center">Tela categoria</figcaption>
 <p align="center">
- <figcaption align="center">Tela categoria</figcaption>
   <img
   src="README/categoria.png"
-  alt="Tela categoria" width="400"> 
+  alt="Tela categoria" width="550"> 
 </p>
 </figure>
 
